@@ -1,0 +1,24 @@
+language: go
+
+go:
+- 1.8.3
+install: true
+
+env:
+  matrix:
+  - NAME=j2y
+
+script: CGO_ENABLED=0 go build
+
+deploy:
+  provider: releases
+  api_key: $GH_TOKEN
+  file: $NAME
+  skip_cleanup: true
+  on:
+    tags: true
+
+notifications:
+  email:
+    recipients:
+    - thb.krkr+travis-j2y@gmail.com
